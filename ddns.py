@@ -51,6 +51,6 @@ def main():
     dns_ip = get_current_ip()
     if dns_ip != home_ip:
         set_new_ip(home_ip)
-        return 'OK'
+        return 'Updated: %s' % home_ip
     else:
         return 'No Change', 304
