@@ -44,7 +44,7 @@ def set_new_ip(new_ip):
 
 @app.route('/', methods=['POST'])
 def main():
-    if request.form['api_key'] != API_KEY:
+    if request.form.get('api_key', '') != API_KEY:
         abort(401)
 
     home_ip = request.environ['REMOTE_ADDR']
