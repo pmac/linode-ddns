@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, abort, request
+from flask import Flask, abort, request, render_template
 from werkzeug.contrib.fixers import ProxyFix
 
 import requests
@@ -42,8 +42,11 @@ def set_new_ip(new_ip):
     })
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def main():
+    if request.method != 'POST':
+        return render_template('index.html')
+
     if request.form.get('api_key', '') != API_KEY:
         abort(401)
 
